@@ -10,7 +10,7 @@ import io.ololo.yolife.utils.Utils;
  */
 public class LiveController {
 
-    private static final int UPDATE_INTERVAL = 1000;
+    public static final int UPDATE_INTERVAL = 1000;
 
     private Grid grid;
     private Handler handler;

@@ -21,7 +21,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lifeGridView = (LifeGridView) findViewById(R.id.life_grid);
-        model = Grid.createCustom();
+        model = new Grid();
         model.addObserver(lifeGridView);
         controller = new LiveController(model);
         lifeGridView.setOnCellTouchListener(new LifeGridView.OnCellTouchListener() {
@@ -39,7 +39,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action) {
             if (controller.isRunning()) {
@@ -47,7 +47,13 @@ public class MainActivity extends ActionBarActivity {
             } else {
                 controller.start();
             }
-            item.setTitle(controller.isRunning() ? R.string.stop: R.string.start);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    item.setTitle(controller.isRunning() ? R.string.stop : R.string.start);
+                }
+            });
+
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -57,5 +63,9 @@ public class MainActivity extends ActionBarActivity {
     protected void onDestroy() {
         super.onDestroy();
         controller.stop();
+    }
+
+    public Grid getModel() {
+        return model;
     }
 }
