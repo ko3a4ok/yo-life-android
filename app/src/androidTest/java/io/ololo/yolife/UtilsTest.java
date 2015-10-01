@@ -1,8 +1,9 @@
 package io.ololo.yolife;
 
 import android.graphics.Rect;
-import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
+
+import junit.framework.TestCase;
 
 import java.util.Arrays;
 
@@ -12,7 +13,7 @@ import io.ololo.yolife.utils.Utils;
 /**
  * Created by ko3a4ok on 01.10.15.
  */
-public class UtilsTest extends AndroidTestCase {
+public class UtilsTest extends TestCase {
 
     @SmallTest
     public void testPositive() {
@@ -93,6 +94,14 @@ public class UtilsTest extends AndroidTestCase {
         assertNull(Utils.getCell(rect, -1, 0, 10, 10));
         assertTrue(Arrays.equals(Utils.getCell(rect, 0, 0, 10, 10), new int[]{0, 0}));
         assertTrue(Arrays.equals(Utils.getCell(rect, 55, 45, 10, 10), new int[]{4, 5}));
+    }
+
+    public void testPerformance() {
+        long start = System.currentTimeMillis();
+        Grid grid = new Grid(1000, 1000);
+        Utils.nextGrid(grid);
+        long duration = System.currentTimeMillis() - start;
+        assertTrue(duration < 500);
     }
 
 }
