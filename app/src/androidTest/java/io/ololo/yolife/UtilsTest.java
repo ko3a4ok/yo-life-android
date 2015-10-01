@@ -8,6 +8,7 @@ import junit.framework.TestCase;
 import java.util.Arrays;
 
 import io.ololo.yolife.model.Grid;
+import io.ololo.yolife.model.LiveController;
 import io.ololo.yolife.utils.Utils;
 
 /**
@@ -101,7 +102,7 @@ public class UtilsTest extends TestCase {
         Grid grid = new Grid(1000, 1000);
         Utils.nextGrid(grid);
         long duration = System.currentTimeMillis() - start;
-        assertTrue(duration < 500);
+        assertTrue(duration < LiveController.UPDATE_INTERVAL);
     }
 
 }
