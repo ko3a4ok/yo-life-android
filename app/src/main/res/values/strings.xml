@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Yo Life</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="stop">Stop</string>
+    <string name="start">Start</string>
+</resources>
