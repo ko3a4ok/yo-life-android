@@ -34,7 +34,6 @@ public class Grid extends Observable {
     public Grid(int h, int w) {
         if (h <= 0 || w <= 0) throw new IllegalArgumentException("Grid edges should be positive");
         data = new boolean[w][h];
-        data[w/2][h/2] = true;
     }
 
     public int getWidth() {
