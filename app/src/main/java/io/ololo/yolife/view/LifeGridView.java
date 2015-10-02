@@ -55,7 +55,7 @@ public class LifeGridView extends SurfaceView implements Observer {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (touchListener != null && data != null && event.getActionMasked() != MotionEvent.ACTION_UP) {
+        if (touchListener != null && data != null && (event.getActionMasked() != MotionEvent.ACTION_UP && event.getActionMasked() != MotionEvent.ACTION_CANCEL)) {
             int[] cell = Utils.getCell(gridRect, event.getX()-getLeft(), event.getY()-getTop(), data.getWidth(), data.getHeight());
             if (cell != null) {
                 touchListener.onTouchCell(cell[0], cell[1]);
